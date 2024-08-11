@@ -183,22 +183,21 @@ export default {
 				console.error('处理 URL 时发生错误：', error);
 			}
 
-			//修复中文错误
-			const utf8Encoder = new TextEncoder();
-			const encodedData = utf8Encoder.encode(req_data);
-			const text = String.fromCharCode.apply(null, encodedData);
-			
-			//去重
-			const uniqueLines = new Set(text.split('\n'));
-			const result = [...uniqueLines].join('\n');
-			console.log(result);
+			// 修复中文错误
+const utf8Encoder = new TextEncoder();
+const encodedData = utf8Encoder.encode(req_data);
+const text = String.fromCharCode.apply(null, encodedData);
 
-			 // 重新命名
-                       const renamedLines = uniqueLines.map((line, index) => {
-                         return line.replace(/#.*$/, '') + `#v${index + 1}`;
-                                         });
-                         // 将处理后的行连接成字符串
-                       let result = renamedLines.join('\n');
+// 去重
+const uniqueLines = [...new Set(text.split('\n'))];
+
+// 重新命名
+const renamedLines = uniqueLines.map((line, index) => {
+    return line.replace(/#.*$/, '') + `#v${index + 1}`;
+});
+
+// 将处理后的行连接成字符串
+const result = renamedLines.join('\n');
 			
 			const base64Data = btoa(result);
 
