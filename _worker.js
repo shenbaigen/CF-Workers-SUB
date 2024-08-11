@@ -197,7 +197,8 @@ export default {
                        const renamedLines = uniqueLines.map((line, index) => {
                          return line.replace(/#.*$/, '') + `#v${index + 1}`;
                                          });
-                         result = renamedLines.join('\n');
+                         // 将处理后的行连接成字符串
+                       const result = renamedLines.join('\n');
 			
 			const base64Data = btoa(result);
 
