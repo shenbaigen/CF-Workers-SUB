@@ -198,7 +198,7 @@ export default {
                          return line.replace(/#.*$/, '') + `#v${index + 1}`;
                                          });
                          // 将处理后的行连接成字符串
-                       const result = renamedLines.join('\n');
+                       let result = renamedLines.join('\n');
 			
 			const base64Data = btoa(result);
 
