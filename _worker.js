@@ -98,7 +98,7 @@ export default {
 
 			let subconverterUrl ;
 			let 订阅转换URL = `${url.origin}/${await MD5MD5(fakeToken)}?token=${fakeToken}`;
-			//console.log(订阅转换URL);
+			console.log(订阅转换URL);
 			let req_data = MainData;
                         let lines = req_data.split('\n').filter(line => line.trim() !== '');
                           req_data = lines.map((line, index) => {
@@ -195,7 +195,7 @@ export default {
 			//去重
 			const uniqueLines = new Set(text.split('\n'));
 			const result = [...uniqueLines].join('\n');
-			//console.log(result);
+			console.log(result);
 			
 			const base64Data = btoa(result);
 
@@ -214,7 +214,7 @@ export default {
 			} else if (订阅格式 == 'surge'){
 				subconverterUrl = `${subProtocol}://${subconverter}/sub?target=surge&url=${encodeURIComponent(订阅转换URL)}&insert=false&config=${encodeURIComponent(subconfig)}&emoji=true&list=false&tfo=false&scv=true&fdn=false&sort=false&new_name=true`;
 			}
-			//console.log(订阅转换URL);
+			console.log(订阅转换URL);
 			try {
 				const subconverterResponse = await fetch(subconverterUrl);
 				
