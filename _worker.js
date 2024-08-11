@@ -100,11 +100,7 @@ export default {
 			let 订阅转换URL = `${url.origin}/${await MD5MD5(fakeToken)}?token=${fakeToken}`;
 			console.log(订阅转换URL);
 			let req_data = MainData;
-                        let lines = req_data.split('\n').filter(line => line.trim() !== '');
-                          req_data = lines.map((line, index) => {
-                                     return line.replace(/#.*$/, '') + `#v${index + 1}`;
-                                    }).join('\n');
-
+                     
 			// 初始化缓存
 			const cache = caches.default;
 
@@ -196,6 +192,12 @@ export default {
 			const uniqueLines = new Set(text.split('\n'));
 			const result = [...uniqueLines].join('\n');
 			console.log(result);
+
+			 // 重新命名
+                       const renamedLines = uniqueLines.map((line, index) => {
+                         return line.replace(/#.*$/, '') + `#v${index + 1}`;
+                                         });
+                         result = renamedLines.join('\n');
 			
 			const base64Data = btoa(result);
 
